@@ -6,6 +6,12 @@ import db from './config/db';
 var cors = require('cors');
 const dotenv = require('dotenv').config();
 const app = express()
+import path from 'path'
+
+
+app.get('/',function(req,res){
+	res.status(200).sendFile(path.join(__dirname,"public","index.html"))
+})
 
 
 /*connecting middleware*/
@@ -31,11 +37,6 @@ app.use('/api', restRouter);
 
 /*running server */
 const port = process.env.PORT || 3000;
-
-// var httpsServer = https.createServer(credentials,app);
-// httpsServer.listen(port,function(){
-// 	console.log("Server is running 443")
-// });
 
 app.listen(port, () => {
 	console.log(`Server running on port ${port}`)
